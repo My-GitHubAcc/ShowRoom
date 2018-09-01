@@ -158,6 +158,8 @@
     <Compile Include="Models\Pays.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Repository\Base\IRepository.cs" />
+    <Compile Include="Models\Repository\Base\Repository.cs" />
     <Compile Include="Models\Transmission.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
