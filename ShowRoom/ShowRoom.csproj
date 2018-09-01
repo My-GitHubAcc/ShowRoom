@@ -152,9 +152,11 @@
     <Compile Include="Models\Marque.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MarqueList.cs" />
     <Compile Include="Models\Model.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelList.cs" />
     <Compile Include="Models\Pays.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
