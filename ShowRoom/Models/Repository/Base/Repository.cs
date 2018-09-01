@@ -7,7 +7,7 @@ using System.Web;
 
 namespace ShowRoom.Models.Repository
 {
-    public class Repository<TEntity, TContext> : IRepository<TEntity>
+    public abstract class Repository<TEntity, TContext> : IRepository<TEntity>
         where TEntity : class
         where TContext : DbContext, new()
     {
