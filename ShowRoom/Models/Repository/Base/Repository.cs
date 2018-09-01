@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace ShowRoom.Models.Repository
+namespace ShowRoom.Repository
 {
     public abstract class Repository<TEntity, TContext> : IRepository<TEntity>
         where TEntity : class
