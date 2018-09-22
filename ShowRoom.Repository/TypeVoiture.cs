@@ -12,18 +12,18 @@ namespace ShowRoom.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Marque
+    public partial class TypeVoiture
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Marque()
+        public TypeVoiture()
         {
-            this.Model = new HashSet<Model>();
+            this.Marque = new HashSet<Marque>();
         }
     
         public int Id { get; set; }
-        public string Marque_ { get; set; }
+        public string TypeVoiture_ { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Model> Model { get; set; }
+        public virtual ICollection<Marque> Marque { get; set; }
     }
 }

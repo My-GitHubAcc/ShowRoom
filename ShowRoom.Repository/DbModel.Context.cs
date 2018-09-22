@@ -16,7 +16,7 @@ namespace ShowRoom.Models
     public partial class DbEntities : DbContext
     {
         public DbEntities()
-            : base("name=DbEntities")
+            : base("name=Entities")
         {
         }
     

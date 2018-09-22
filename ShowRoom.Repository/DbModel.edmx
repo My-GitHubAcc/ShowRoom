@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShowRoom.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Db_ShowRoomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Carburant">
           <Key>
             <PropertyRef Name="Id" />
@@ -18,15 +18,15 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Marque" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeVoiture" Type="int" />
         </EntityType>
         <EntityType Name="Model">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Model" Type="nvarchar" MaxLength="50" />
           <Property Name="Marque" Type="int" />
-          <Property Name="TypeVoiture" Type="int" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
           <Property Name="Annee" Type="nchar" MaxLength="4" />
           <Property Name="Puissance" Type="int" />
           <Property Name="Reservoir" Type="real" />
@@ -43,34 +43,6 @@
           <Property Name="Carburant" Type="int" />
           <Property Name="Transmission" Type="int" />
           <Property Name="PayFabrication" Type="int" />
-          <Property Name="Boite_Auto" Type="nvarchar" MaxLength="10" />
-          <Property Name="Manuelle_robotisee" Type="nvarchar" MaxLength="10" />
-          <Property Name="Airbags_rideaux" Type="nvarchar" MaxLength="10" />
-          <Property Name="ESP" Type="nvarchar" MaxLength="10" />
-          <Property Name="Capteurs_Pluie" Type="nvarchar" MaxLength="10" />
-          <Property Name="Luminosite" Type="nvarchar" MaxLength="10" />
-          <Property Name="Radars_parking_avant" Type="nvarchar" MaxLength="10" />
-          <Property Name="Radars_parking_Arriere" Type="nvarchar" MaxLength="10" />
-          <Property Name="Jantes_Alliage" Type="nvarchar" MaxLength="10" />
-          <Property Name="Peinture_Metallisee" Type="nvarchar" MaxLength="10" />
-          <Property Name="Système_de_navigation" Type="nvarchar" MaxLength="10" />
-          <Property Name="Ecran_Tactile" Type="nvarchar" MaxLength="10" />
-          <Property Name="Climatisation_Manuelle" Type="nvarchar" MaxLength="10" />
-          <Property Name="Climatisation_Automatique" Type="nvarchar" MaxLength="10" />
-          <Property Name="Radio_CD" Type="nvarchar" MaxLength="10" />
-          <Property Name="Prise_USB" Type="nvarchar" MaxLength="10" />
-          <Property Name="Sellerie_cuir" Type="nvarchar" MaxLength="10" />
-          <Property Name="Selerie_Cuir_Integral" Type="nvarchar" MaxLength="10" />
-          <Property Name="Sièges_Chauffants" Type="nvarchar" MaxLength="10" />
-          <Property Name="Banquette_AR_fraction" Type="nvarchar" MaxLength="10" />
-          <Property Name="Banquette_AR_coulissante" Type="nvarchar" MaxLength="10" />
-          <Property Name="Rétros_electriques" Type="nvarchar" MaxLength="10" />
-          <Property Name="Clé_mains_libres" Type="nvarchar" MaxLength="10" />
-          <Property Name="Toit_ouvrant_electrique" Type="nvarchar" MaxLength="10" />
-          <Property Name="Vitre_fixe" Type="nvarchar" MaxLength="10" />
-          <Property Name="Vitres_electriques_Avant" Type="nvarchar" MaxLength="10" />
-          <Property Name="Vitres_electriques_Arriere" Type="nvarchar" MaxLength="10" />
-          <Property Name="ABS" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Pays">
           <Key>
@@ -93,7 +65,19 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TypeVoiture" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__Model__Carburant__5DCAEF64">
+        <Association Name="FK__Marque__TypeVoit__25869641">
+          <End Role="TypeVoiture" Type="Self.TypeVoiture" Multiplicity="0..1" />
+          <End Role="Marque" Type="Self.Marque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeVoiture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marque">
+              <PropertyRef Name="TypeVoiture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Model__Carburant__4AB81AF0">
           <End Role="Carburant" Type="Self.Carburant" Multiplicity="0..1" />
           <End Role="Model" Type="Self.Model" Multiplicity="*" />
           <ReferentialConstraint>
@@ -105,7 +89,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Model__Marque__5BE2A6F2">
+        <Association Name="FK__Model__Marque__49C3F6B7">
           <End Role="Marque" Type="Self.Marque" Multiplicity="0..1" />
           <End Role="Model" Type="Self.Model" Multiplicity="*" />
           <ReferentialConstraint>
@@ -117,7 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Model__PayFabric__5FB337D6">
+        <Association Name="FK__Model__PayFabric__4BAC3F29">
           <End Role="Pays" Type="Self.Pays" Multiplicity="0..1" />
           <End Role="Model" Type="Self.Model" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,7 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Model__Transmiss__5EBF139D">
+        <Association Name="FK__Model__Transmiss__4CA06362">
           <End Role="Transmission" Type="Self.Transmission" Multiplicity="0..1" />
           <End Role="Model" Type="Self.Model" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,43 +125,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Model__TypeVoitu__5CD6CB2B">
-          <End Role="TypeVoiture" Type="Self.TypeVoiture" Multiplicity="0..1" />
-          <End Role="Model" Type="Self.Model" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeVoiture">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Model">
-              <PropertyRef Name="TypeVoiture" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="ShowRoomModelStoreContainer">
+        <EntityContainer Name="Db_ShowRoomModelStoreContainer">
           <EntitySet Name="Carburant" EntityType="Self.Carburant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Marque" EntityType="Self.Marque" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pays" EntityType="Self.Pays" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transmission" EntityType="Self.Transmission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeVoiture" EntityType="Self.TypeVoiture" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Model__Carburant__5DCAEF64" Association="Self.FK__Model__Carburant__5DCAEF64">
+          <AssociationSet Name="FK__Marque__TypeVoit__25869641" Association="Self.FK__Marque__TypeVoit__25869641">
+            <End Role="TypeVoiture" EntitySet="TypeVoiture" />
+            <End Role="Marque" EntitySet="Marque" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Model__Carburant__4AB81AF0" Association="Self.FK__Model__Carburant__4AB81AF0">
             <End Role="Carburant" EntitySet="Carburant" />
             <End Role="Model" EntitySet="Model" />
           </AssociationSet>
-          <AssociationSet Name="FK__Model__Marque__5BE2A6F2" Association="Self.FK__Model__Marque__5BE2A6F2">
+          <AssociationSet Name="FK__Model__Marque__49C3F6B7" Association="Self.FK__Model__Marque__49C3F6B7">
             <End Role="Marque" EntitySet="Marque" />
             <End Role="Model" EntitySet="Model" />
           </AssociationSet>
-          <AssociationSet Name="FK__Model__PayFabric__5FB337D6" Association="Self.FK__Model__PayFabric__5FB337D6">
+          <AssociationSet Name="FK__Model__PayFabric__4BAC3F29" Association="Self.FK__Model__PayFabric__4BAC3F29">
             <End Role="Pays" EntitySet="Pays" />
             <End Role="Model" EntitySet="Model" />
           </AssociationSet>
-          <AssociationSet Name="FK__Model__Transmiss__5EBF139D" Association="Self.FK__Model__Transmiss__5EBF139D">
+          <AssociationSet Name="FK__Model__Transmiss__4CA06362" Association="Self.FK__Model__Transmiss__4CA06362">
             <End Role="Transmission" EntitySet="Transmission" />
-            <End Role="Model" EntitySet="Model" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Model__TypeVoitu__5CD6CB2B" Association="Self.FK__Model__TypeVoitu__5CD6CB2B">
-            <End Role="TypeVoiture" EntitySet="TypeVoiture" />
             <End Role="Model" EntitySet="Model" />
           </AssociationSet>
         </EntityContainer>
@@ -185,14 +157,14 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ShowRoom.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Db_ShowRoomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Carburant">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Carburant_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Model" Relationship="Self.FK__Model__Carburant__5DCAEF64" FromRole="Carburant" ToRole="Model" />
+          <NavigationProperty Name="Model" Relationship="Self.FK__Model__Carburant__4AB81AF0" FromRole="Carburant" ToRole="Model" />
         </EntityType>
         <EntityType Name="Marque">
           <Key>
@@ -200,16 +172,17 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Marque_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Model" Relationship="Self.FK__Model__Marque__5BE2A6F2" FromRole="Marque" ToRole="Model" />
+          <Property Name="TypeVoiture" Type="Int32" />
+          <NavigationProperty Name="TypeVoiture_" Relationship="Self.FK__Marque__TypeVoit__25869641" FromRole="Marque" ToRole="TypeVoiture" />
+          <NavigationProperty Name="Model" Relationship="Self.FK__Model__Marque__49C3F6B7" FromRole="Marque" ToRole="Model" />
         </EntityType>
         <EntityType Name="Model">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Model_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Marque" Type="Int32" />
-          <Property Name="TypeVoiture" Type="Int32" />
+          <Property Name="Model_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Annee" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
           <Property Name="Puissance" Type="Int32" />
           <Property Name="Reservoir" Type="Single" />
@@ -226,39 +199,10 @@
           <Property Name="Carburant" Type="Int32" />
           <Property Name="Transmission" Type="Int32" />
           <Property Name="PayFabrication" Type="Int32" />
-          <Property Name="Boite_Auto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Manuelle_robotisee" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Airbags_rideaux" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ESP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Capteurs_Pluie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Luminosite" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Radars_parking_avant" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Radars_parking_Arriere" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Jantes_Alliage" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Peinture_Metallisee" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Système_de_navigation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Ecran_Tactile" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Climatisation_Manuelle" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Climatisation_Automatique" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Radio_CD" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Prise_USB" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Sellerie_cuir" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Selerie_Cuir_Integral" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Sièges_Chauffants" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Banquette_AR_fraction" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Banquette_AR_coulissante" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Rétros_electriques" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Clé_mains_libres" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Toit_ouvrant_electrique" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Vitre_fixe" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Vitres_electriques_Avant" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Vitres_electriques_Arriere" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ABS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="IdCarburant" Relationship="Self.FK__Model__Carburant__5DCAEF64" FromRole="Model" ToRole="Carburant" />
-          <NavigationProperty Name="IdMarque" Relationship="Self.FK__Model__Marque__5BE2A6F2" FromRole="Model" ToRole="Marque" />
-          <NavigationProperty Name="Pays" Relationship="Self.FK__Model__PayFabric__5FB337D6" FromRole="Model" ToRole="Pays" />
-          <NavigationProperty Name="IdTransmission" Relationship="Self.FK__Model__Transmiss__5EBF139D" FromRole="Model" ToRole="Transmission" />
-          <NavigationProperty Name="IdTypeVoiture" Relationship="Self.FK__Model__TypeVoitu__5CD6CB2B" FromRole="Model" ToRole="TypeVoiture" />
+          <NavigationProperty Name="Carburant_" Relationship="Self.FK__Model__Carburant__4AB81AF0" FromRole="Model" ToRole="Carburant" />
+          <NavigationProperty Name="Marque_" Relationship="Self.FK__Model__Marque__49C3F6B7" FromRole="Model" ToRole="Marque" />
+          <NavigationProperty Name="Pays" Relationship="Self.FK__Model__PayFabric__4BAC3F29" FromRole="Model" ToRole="Pays" />
+          <NavigationProperty Name="Transmission_" Relationship="Self.FK__Model__Transmiss__4CA06362" FromRole="Model" ToRole="Transmission" />
         </EntityType>
         <EntityType Name="Pays">
           <Key>
@@ -266,7 +210,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Pays_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Model" Relationship="Self.FK__Model__PayFabric__5FB337D6" FromRole="Pays" ToRole="Model" />
+          <NavigationProperty Name="Model" Relationship="Self.FK__Model__PayFabric__4BAC3F29" FromRole="Pays" ToRole="Model" />
         </EntityType>
         <EntityType Name="Transmission">
           <Key>
@@ -274,7 +218,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Transmission_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Model" Relationship="Self.FK__Model__Transmiss__5EBF139D" FromRole="Transmission" ToRole="Model" />
+          <NavigationProperty Name="Model" Relationship="Self.FK__Model__Transmiss__4CA06362" FromRole="Transmission" ToRole="Model" />
         </EntityType>
         <EntityType Name="TypeVoiture">
           <Key>
@@ -282,9 +226,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TypeVoiture_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Model" Relationship="Self.FK__Model__TypeVoitu__5CD6CB2B" FromRole="TypeVoiture" ToRole="Model" />
+          <NavigationProperty Name="Marque" Relationship="Self.FK__Marque__TypeVoit__25869641" FromRole="TypeVoiture" ToRole="Marque" />
         </EntityType>
-        <Association Name="FK__Model__Carburant__5DCAEF64">
+        <Association Name="FK__Model__Carburant__4AB81AF0">
           <End Role="Carburant" Type="Self.Carburant" Multiplicity="0..1" />
           <End Role="Model" Type="Self.Model" Multiplicity="*" />
           <ReferentialConstraint>
@@ -296,7 +240,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Model__Marque__5BE2A6F2">
+        <Association Name="FK__Marque__TypeVoit__25869641">
+          <End Role="TypeVoiture" Type="Self.TypeVoiture" Multiplicity="0..1" />
+          <End Role="Marque" Type="Self.Marque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeVoiture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marque">
+              <PropertyRef Name="TypeVoiture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Model__Marque__49C3F6B7">
           <End Role="Marque" Type="Self.Marque" Multiplicity="0..1" />
           <End Role="Model" Type="Self.Model" Multiplicity="*" />
           <ReferentialConstraint>
@@ -308,7 +264,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Model__PayFabric__5FB337D6">
+        <Association Name="FK__Model__PayFabric__4BAC3F29">
           <End Role="Pays" Type="Self.Pays" Multiplicity="0..1" />
           <End Role="Model" Type="Self.Model" Multiplicity="*" />
           <ReferentialConstraint>
@@ -320,7 +276,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Model__Transmiss__5EBF139D">
+        <Association Name="FK__Model__Transmiss__4CA06362">
           <End Role="Transmission" Type="Self.Transmission" Multiplicity="0..1" />
           <End Role="Model" Type="Self.Model" Multiplicity="*" />
           <ReferentialConstraint>
@@ -332,43 +288,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Model__TypeVoitu__5CD6CB2B">
-          <End Role="TypeVoiture" Type="Self.TypeVoiture" Multiplicity="0..1" />
-          <End Role="Model" Type="Self.Model" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeVoiture">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Model">
-              <PropertyRef Name="TypeVoiture" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Carburant" EntityType="Self.Carburant" />
           <EntitySet Name="Marque" EntityType="Self.Marque" />
           <EntitySet Name="Model" EntityType="Self.Model" />
           <EntitySet Name="Pays" EntityType="Self.Pays" />
           <EntitySet Name="Transmission" EntityType="Self.Transmission" />
           <EntitySet Name="TypeVoiture" EntityType="Self.TypeVoiture" />
-          <AssociationSet Name="FK__Model__Carburant__5DCAEF64" Association="Self.FK__Model__Carburant__5DCAEF64">
+          <AssociationSet Name="FK__Model__Carburant__4AB81AF0" Association="Self.FK__Model__Carburant__4AB81AF0">
             <End Role="Carburant" EntitySet="Carburant" />
             <End Role="Model" EntitySet="Model" />
           </AssociationSet>
-          <AssociationSet Name="FK__Model__Marque__5BE2A6F2" Association="Self.FK__Model__Marque__5BE2A6F2">
+          <AssociationSet Name="FK__Marque__TypeVoit__25869641" Association="Self.FK__Marque__TypeVoit__25869641">
+            <End Role="TypeVoiture" EntitySet="TypeVoiture" />
+            <End Role="Marque" EntitySet="Marque" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Model__Marque__49C3F6B7" Association="Self.FK__Model__Marque__49C3F6B7">
             <End Role="Marque" EntitySet="Marque" />
             <End Role="Model" EntitySet="Model" />
           </AssociationSet>
-          <AssociationSet Name="FK__Model__PayFabric__5FB337D6" Association="Self.FK__Model__PayFabric__5FB337D6">
+          <AssociationSet Name="FK__Model__PayFabric__4BAC3F29" Association="Self.FK__Model__PayFabric__4BAC3F29">
             <End Role="Pays" EntitySet="Pays" />
             <End Role="Model" EntitySet="Model" />
           </AssociationSet>
-          <AssociationSet Name="FK__Model__Transmiss__5EBF139D" Association="Self.FK__Model__Transmiss__5EBF139D">
+          <AssociationSet Name="FK__Model__Transmiss__4CA06362" Association="Self.FK__Model__Transmiss__4CA06362">
             <End Role="Transmission" EntitySet="Transmission" />
-            <End Role="Model" EntitySet="Model" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Model__TypeVoitu__5CD6CB2B" Association="Self.FK__Model__TypeVoitu__5CD6CB2B">
-            <End Role="TypeVoiture" EntitySet="TypeVoiture" />
             <End Role="Model" EntitySet="Model" />
           </AssociationSet>
         </EntityContainer>
@@ -377,9 +321,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ShowRoomModelStoreContainer" CdmEntityContainer="DbEntities">
+        <EntityContainerMapping StorageEntityContainer="Db_ShowRoomModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Carburant">
-            <EntityTypeMapping TypeName="ShowRoom.Model.Carburant">
+            <EntityTypeMapping TypeName="Db_ShowRoomModel.Carburant">
               <MappingFragment StoreEntitySet="Carburant">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Carburant_" ColumnName="Carburant" />
@@ -387,20 +331,20 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Marque">
-            <EntityTypeMapping TypeName="ShowRoom.Model.Marque">
+            <EntityTypeMapping TypeName="Db_ShowRoomModel.Marque">
               <MappingFragment StoreEntitySet="Marque">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Marque_" ColumnName="Marque" />
+                <ScalarProperty Name="TypeVoiture" ColumnName="TypeVoiture" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Model">
-            <EntityTypeMapping TypeName="ShowRoom.Model.Model">
+            <EntityTypeMapping TypeName="Db_ShowRoomModel.Model">
               <MappingFragment StoreEntitySet="Model">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Model_" ColumnName="Model" />
                 <ScalarProperty Name="Marque" ColumnName="Marque" />
-                <ScalarProperty Name="TypeVoiture" ColumnName="TypeVoiture" />
+                <ScalarProperty Name="Model_" ColumnName="Model" />
                 <ScalarProperty Name="Annee" ColumnName="Annee" />
                 <ScalarProperty Name="Puissance" ColumnName="Puissance" />
                 <ScalarProperty Name="Reservoir" ColumnName="Reservoir" />
@@ -417,39 +361,11 @@
                 <ScalarProperty Name="Carburant" ColumnName="Carburant" />
                 <ScalarProperty Name="Transmission" ColumnName="Transmission" />
                 <ScalarProperty Name="PayFabrication" ColumnName="PayFabrication" />
-                <ScalarProperty Name="Boite_Auto" ColumnName="Boite_Auto" />
-                <ScalarProperty Name="Manuelle_robotisee" ColumnName="Manuelle_robotisee" />
-                <ScalarProperty Name="Airbags_rideaux" ColumnName="Airbags_rideaux" />
-                <ScalarProperty Name="ESP" ColumnName="ESP" />
-                <ScalarProperty Name="Capteurs_Pluie" ColumnName="Capteurs_Pluie" />
-                <ScalarProperty Name="Luminosite" ColumnName="Luminosite" />
-                <ScalarProperty Name="Radars_parking_avant" ColumnName="Radars_parking_avant" />
-                <ScalarProperty Name="Radars_parking_Arriere" ColumnName="Radars_parking_Arriere" />
-                <ScalarProperty Name="Jantes_Alliage" ColumnName="Jantes_Alliage" />
-                <ScalarProperty Name="Peinture_Metallisee" ColumnName="Peinture_Metallisee" />
-                <ScalarProperty Name="Système_de_navigation" ColumnName="Système_de_navigation" />
-                <ScalarProperty Name="Ecran_Tactile" ColumnName="Ecran_Tactile" />
-                <ScalarProperty Name="Climatisation_Manuelle" ColumnName="Climatisation_Manuelle" />
-                <ScalarProperty Name="Climatisation_Automatique" ColumnName="Climatisation_Automatique" />
-                <ScalarProperty Name="Radio_CD" ColumnName="Radio_CD" />
-                <ScalarProperty Name="Prise_USB" ColumnName="Prise_USB" />
-                <ScalarProperty Name="Sellerie_cuir" ColumnName="Sellerie_cuir" />
-                <ScalarProperty Name="Selerie_Cuir_Integral" ColumnName="Selerie_Cuir_Integral" />
-                <ScalarProperty Name="Sièges_Chauffants" ColumnName="Sièges_Chauffants" />
-                <ScalarProperty Name="Banquette_AR_fraction" ColumnName="Banquette_AR_fraction" />
-                <ScalarProperty Name="Banquette_AR_coulissante" ColumnName="Banquette_AR_coulissante" />
-                <ScalarProperty Name="Rétros_electriques" ColumnName="Rétros_electriques" />
-                <ScalarProperty Name="Clé_mains_libres" ColumnName="Clé_mains_libres" />
-                <ScalarProperty Name="Toit_ouvrant_electrique" ColumnName="Toit_ouvrant_electrique" />
-                <ScalarProperty Name="Vitre_fixe" ColumnName="Vitre_fixe" />
-                <ScalarProperty Name="Vitres_electriques_Avant" ColumnName="Vitres_electriques_Avant" />
-                <ScalarProperty Name="Vitres_electriques_Arriere" ColumnName="Vitres_electriques_Arriere" />
-                <ScalarProperty Name="ABS" ColumnName="ABS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pays">
-            <EntityTypeMapping TypeName="ShowRoom.Model.Pays">
+            <EntityTypeMapping TypeName="Db_ShowRoomModel.Pays">
               <MappingFragment StoreEntitySet="Pays">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Pays_" ColumnName="Pays" />
@@ -457,7 +373,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Transmission">
-            <EntityTypeMapping TypeName="ShowRoom.Model.Transmission">
+            <EntityTypeMapping TypeName="Db_ShowRoomModel.Transmission">
               <MappingFragment StoreEntitySet="Transmission">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Transmission_" ColumnName="Transmission" />
@@ -465,7 +381,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeVoiture">
-            <EntityTypeMapping TypeName="ShowRoom.Model.TypeVoiture">
+            <EntityTypeMapping TypeName="Db_ShowRoomModel.TypeVoiture">
               <MappingFragment StoreEntitySet="TypeVoiture">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TypeVoiture_" ColumnName="TypeVoiture" />
