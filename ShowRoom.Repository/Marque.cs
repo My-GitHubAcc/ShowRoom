@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShowRoom.Models
+namespace ShowRoom.Repository
 {
     using System;
     using System.Collections.Generic;
@@ -21,10 +21,8 @@ namespace ShowRoom.Models
         }
     
         public int Id { get; set; }
-        public string Marque_ { get; set; }
-        public Nullable<int> TypeVoiture { get; set; }
+        public string Marque1 { get; set; }
     
-        public virtual TypeVoiture TypeVoiture_ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Model> Model { get; set; }
     }

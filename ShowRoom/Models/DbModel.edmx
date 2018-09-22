@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Db_ShowRoomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ShowRoom.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Carburant">
           <Key>
             <PropertyRef Name="Id" />
@@ -153,7 +153,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Db_ShowRoomModelStoreContainer">
+        <EntityContainer Name="ShowRoomModelStoreContainer">
           <EntitySet Name="Carburant" EntityType="Self.Carburant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Marque" EntityType="Self.Marque" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
@@ -185,7 +185,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Db_ShowRoomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ShowRoom.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Carburant">
           <Key>
             <PropertyRef Name="Id" />
@@ -344,7 +344,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Carburant" EntityType="Self.Carburant" />
           <EntitySet Name="Marque" EntityType="Self.Marque" />
           <EntitySet Name="Model" EntityType="Self.Model" />
@@ -377,9 +377,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Db_ShowRoomModelStoreContainer" CdmEntityContainer="DbEntities">
+        <EntityContainerMapping StorageEntityContainer="ShowRoomModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Carburant">
-            <EntityTypeMapping TypeName="Db_ShowRoomModel.Carburant">
+            <EntityTypeMapping TypeName="ShowRoom.Model.Carburant">
               <MappingFragment StoreEntitySet="Carburant">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Carburant1" ColumnName="Carburant" />
@@ -387,7 +387,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Marque">
-            <EntityTypeMapping TypeName="Db_ShowRoomModel.Marque">
+            <EntityTypeMapping TypeName="ShowRoom.Model.Marque">
               <MappingFragment StoreEntitySet="Marque">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Marque1" ColumnName="Marque" />
@@ -395,7 +395,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Model">
-            <EntityTypeMapping TypeName="Db_ShowRoomModel.Model">
+            <EntityTypeMapping TypeName="ShowRoom.Model.Model">
               <MappingFragment StoreEntitySet="Model">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Model1" ColumnName="Model" />
@@ -449,7 +449,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pays">
-            <EntityTypeMapping TypeName="Db_ShowRoomModel.Pays">
+            <EntityTypeMapping TypeName="ShowRoom.Model.Pays">
               <MappingFragment StoreEntitySet="Pays">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Pays1" ColumnName="Pays" />
@@ -457,7 +457,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Transmission">
-            <EntityTypeMapping TypeName="Db_ShowRoomModel.Transmission">
+            <EntityTypeMapping TypeName="ShowRoom.Model.Transmission">
               <MappingFragment StoreEntitySet="Transmission">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Transmission1" ColumnName="Transmission" />
@@ -465,7 +465,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeVoiture">
-            <EntityTypeMapping TypeName="Db_ShowRoomModel.TypeVoiture">
+            <EntityTypeMapping TypeName="ShowRoom.Model.TypeVoiture">
               <MappingFragment StoreEntitySet="TypeVoiture">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TypeVoiture1" ColumnName="TypeVoiture" />

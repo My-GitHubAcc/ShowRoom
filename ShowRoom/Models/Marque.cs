@@ -7,21 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShowRoom.Repository
+namespace ShowRoom.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TypeVoiture
+    public partial class Marque
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TypeVoiture()
+        public Marque()
         {
             this.Model = new HashSet<Model>();
         }
     
         public int Id { get; set; }
-        public string TypeVoiture1 { get; set; }
+        public string Marque1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Model> Model { get; set; }

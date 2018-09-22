@@ -1,6 +1,4 @@
-﻿using ShowRoom.Models;
-
-namespace ShowRoom.Repository
+﻿namespace ShowRoom.Repository
 {
     public class MarqueRepository : Repository<Marque, DbEntities>
     {

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShowRoom.Repository
+namespace ShowRoom.Models
 {
     using System;
     using System.Collections.Generic;

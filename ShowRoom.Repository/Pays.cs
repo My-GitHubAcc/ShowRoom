@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShowRoom.Models
+namespace ShowRoom.Repository
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace ShowRoom.Models
         }
     
         public int Id { get; set; }
-        public string Pays_ { get; set; }
+        public string Pays1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Model> Model { get; set; }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShowRoom.Repository
+namespace ShowRoom.Models
 {
     using System;
     using System.Data.Entity;
@@ -16,7 +16,7 @@ namespace ShowRoom.Repository
     public partial class DbEntities : DbContext
     {
         public DbEntities()
-            : base("name=DbEntities")
+            : base("name=Entities")
         {
         }
     
