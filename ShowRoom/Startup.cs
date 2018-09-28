@@ -32,7 +32,9 @@ namespace ShowRoom
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddDbContext<ShowRoomDbContext>(options => options.UseSqlServer(""));
+            string connectionString =
+                @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Db_ShowRoom;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            services.AddDbContext<ShowRoomDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
