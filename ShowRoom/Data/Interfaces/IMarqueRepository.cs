@@ -8,5 +8,6 @@ namespace ShowRoom.Data.Interfaces
 {
     public interface IMarqueRepository : IRepository<Marque>
     {
+        Marque FindWithModels(int id);
     }
 }

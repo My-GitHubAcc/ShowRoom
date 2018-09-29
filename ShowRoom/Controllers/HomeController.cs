@@ -4,16 +4,26 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ShowRoom.Models;
+using ShowRoom.Data.Interfaces;
+using ShowRoom.Data.Model;
 
 namespace ShowRoom.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IMarqueRepository _marqueRepository;
+
+        public HomeController(IMarqueRepository marqueRepository)
+        {
+            _marqueRepository = marqueRepository;
+        }
+
         [Route("")]
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Marque> marques = _marqueRepository.GetAll();
+
+            return View(marques);
         }
     }
 }

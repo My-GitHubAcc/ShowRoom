@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShowRoom.Data;
 using System.Data.SqlClient;
+using ShowRoom.Data.Repository;
+using ShowRoom.Data.Interfaces;
 
 namespace ShowRoom
 {
@@ -36,6 +38,12 @@ namespace ShowRoom
                 @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Db_ShowRoom;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddDbContext<ShowRoomDbContext>(options => options.UseSqlServer(connectionString));
 
+            services.AddTransient<ICarburantRepository, CarburantRepository>();
+            services.AddTransient<IMarqueRepository, MarqueRepository>();
+            services.AddTransient<IModelRepository, ModelRepository>();
+            services.AddTransient<IPaysRepository, PaysRepository>();
+            services.AddTransient<ITransmissionRepository, TransmissionRepository>();
+            services.AddTransient<ITypeVoitureRepository, TypeVoitureRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

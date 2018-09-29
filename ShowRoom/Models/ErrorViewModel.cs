@@ -1,6 +1,6 @@
 using System;
 
-namespace ShowRoom.Models
+namespace ShowRoom.Model
 {
     public class ErrorViewModel
     {

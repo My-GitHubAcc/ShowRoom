@@ -1,0 +1,26 @@
+﻿@model Marque
+@{
+    ViewData["Title"] = Model.Name + " Models";
+}
+
+<div style="margin:10px">
+    @*<input type="text" style="margin:10px;"
+               class="col-md-offset-1 col-md-3 form-control"
+               placeholder="Search for a Marque"
+               onchange=""/>
+        <hr />*@
+    @foreach (var item in Model.Models)
+    {
+        <div class="col-sm-3 col-lg-3 col-md-3">
+            <a class="panel panel-primary btn" asp-controller="Car" asp-action="DetailsModel" asp-route-id="@item.ModelId">
+                <div class="panel-heading">
+                    <h4>@item.Name</h4>
+                </div>
+                <div class="panel-body">
+                    @* An Image placeholder will go here *@
+
+                </div>
+            </a>
+        </div>
+    }
+</div>

@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace ShowRoom.Data.Interfaces
 {
-    public interface IModelRepository : IRepository<Model.Model>
+    public interface IModelRepository : IRepository<Model.Models>
     {
+        Model.Models FindWithDetails(int id);
     }
 }
